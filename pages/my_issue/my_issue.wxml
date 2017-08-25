@@ -1,0 +1,98 @@
+<!--my_save.wxml-->
+<!--导航条-->
+<view class="navbar">
+  <view class="navbar-item" wx:for="{{navbar}}" wx:for-index="idx" data-idx="{{idx}}" bindtap="swichNav">
+    <text class="navbar-text {{currentNavbar==idx ? 'active' : ''}}">{{item}}</text>
+  </view>
+</view>
+
+<!--喵圈-->
+ <scroll-view class="latest-item-container {{currentNavbar==0 ? '' : 'hidden'}}" style="height: {{scrollHeight}}px;" scroll-y="true" bindscrolltolower="scrollLowerEvent" data-index='0'>
+ <view class="circle">
+ <view class='circle_wrap' wx:for='{{circleList}}' wx:for-index='index'>
+ <!--个人信息-->
+ <view class="circle_title">
+  <image class='circle_title_avater' src="{{fans.headimg}}"></image>
+  <view class="circle_title_user">
+      <text class='circle_title_name'>{{fans.nickname}}</text>
+      <!--<image class='official' src="../../images/official_icon.png"></image>-->
+      <text class='circle_title_time'>{{item.dtime}}</text> 
+  </view>
+  <view class="more">
+       <!--<image src="../../images/more.png"></image>-->
+       <text class='circle_del' bindtap='del_circle' data-index='{{index}}' data-id='{{item.id}}'>删除</text>
+  </view>
+ </view>
+<!--发帖内容-->
+      <view class="circle_content" data-id='{{item.id}}' catchtap='goDetail'>
+        <view class='circle_content_title' wx:if='{{item.title}}'>{{item.title}}</view>
+        <view class='circle_content_des'>{{item.cont}}<text class='all' wx:if='{{item.cont.legth>50}}'>查看全文</text></view>
+        <view class="content_image">
+             <image wx:if='{{item.images[0]}}' src="{{item.images[0]}}" mode='aspectFill'></image>
+            <view class="num_image" wx:if='{{item.images[0]}}' >
+                <image src="../../images/num.png"></image>
+                <text class='num_length'>{{item.images.length}}</text>
+            </view>
+      </view>
+      </view>
+ <!--评论分享-->
+ <view class="circle_comment">
+  <view class="circle_comment_bottom circle_comment_heart">
+  <!--点赞-->
+    <view class="like" catchtap='circleHeart' data-uid='{{item.uid}}' data-id='{{item.id}}' data-index='{{index}}' >
+          <image wx:if='{{!item.isheart}}' src="../../images/like_nor.png" class='circle_comment_img'></image>
+          <image wx:if='{{item.isheart}}'src="../../images/like_press.png" class='circle_comment_img'></image>
+    </view>
+    <text>{{item.heart_num}}</text>
+  </view>
+  <!--评论-->
+  <view class="circle_comment_bottom circle_comment_num" bindtap='circleComment' data-id='{{item.id}}'>
+      <view class="revert">
+          <image src="../../images/revert_nor.png" class='circle_comment_img'></image>
+      </view>
+      <text>{{item.rever_num}}</text>
+  </view>
+  <!--收藏-->
+  <view class="circle_comment_bottom circle_comment_collect" catchtap='circleCollect' data-uid='{{item.uid}}' data-id='{{item.id}}' data-index='{{index}}' >
+     <view class="save">
+            <image wx:if='{{!item.iscollect}}' src="../../images/save_nor.png" class='circle_comment_img'></image>
+            <image wx:if='{{item.iscollect}}' src="../../images/save_press.png" class='circle_comment_img'></image>
+     </view>
+    <text>收藏</text>
+  </view>
+  <!--分享-->
+  <view class="circle_comment_bottom circle_comment_share"  data-id='{{item.id}}' catchtap='goDetail'>
+    <view class="share">
+          <image src="../../images/share_nor.png" class='circle_comment_img'></image>
+    </view>  
+    <text>分享</text>
+  </view>
+ </view>
+ </view>
+ </view>
+ <view class='nonemsg' wx:if="{{circleList==NULL || circleList==''}}">
+        <image src="../../images/kong.png"></image>
+        <view>暂无喵圈发布</view>
+    </view>
+</scroll-view>
+
+<!--喵问-->
+ <scroll-view class="latest-item-container {{currentNavbar==1 ? '' : 'hidden'}}" style="height: {{scrollHeight}}px;" scroll-y="true" bindscrolltolower="scrollLowerEvent"  data-index='1'>
+ <view class='qustion_wrap' wx:for='{{questionList}}' wx:for-index='index'>
+<!--发帖内容-->
+ <view class="question_content" bindtap='qustionClick' data-id='{{item.id}}'>
+     <view class='question_content_title'>{{item.title}}</view>
+ </view>
+<!--时间和操作-->
+<view class="my_issue">
+    <text class='my_issue_time'>{{item.ctime}}</text>
+    <text class='del' catchtap='del_question' data-id='{{item.id}}' data-index='{{index}}'>删除</text>
+</view>
+
+</view>
+<view class='nonemsg' wx:if="{{questionList==NULL ||questionList==''}}">
+        <image src="../../images/kong.png"></image>
+        <view>暂无喵问发布</view>
+    </view>
+</scroll-view>
+

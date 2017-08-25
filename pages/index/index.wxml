@@ -1,0 +1,216 @@
+<!--导航条-->
+<view class="navbar">
+  <view class="navbar-item" wx:for="{{navbar}}" wx:for-index="idx" data-idx="{{idx}}" bindtap="swichNav">
+    <text class="navbar-text {{currentNavbar==idx ? 'active' : ''}} ">{{item}}</text>
+  </view>
+</view>
+<!--晒图-->
+<scroll-view class="hot-item-container {{currentNavbar==0 ? '' : 'hidden'}}" data-index='0' style='margin-top:96rpx;'>
+  <swiper class="swiper" interval="5000" duration="500">
+    <swiper-item class="swiper_item" wx:for='{{showList}}' wx:for-index='index' bindtap='goDetail' data-id='{{item.id}}' wx:if='{{item.images[0]}}'>
+      <text class='num_like'>已有{{item.heart_num}}人喜欢</text>
+     <view class="index_image" style='position:relative'>
+      <image src="{{item.images[0]}}" class="slide-image" mode="aspectFill" />
+      <view class="swiper_num">
+        <image src="../../images/num.png" class='swiper_num_img'></image>
+        <text class='num_length'>{{item.images.length}}</text>
+      </view>
+     </view>
+      <view class="swiper_des">
+        <text class='swiper_name'>{{item.uname}}</text>
+        <image class='location' src="../../images/location.png"></image>
+        <text class='swiper_location'>{{item.city}}</text>
+        <image class='swiper_share' src="../../images/share_nor.png" mode="aspectFill" />
+      </view>
+      <view class="heart" catchtap='imgHeart' data-uid='{{item.uid}}' data-id='{{item.id}}' data-index='{{index}}'>
+        <image wx:if='{{!item.isheart}}' src="../../images/like_big_nor.gif"></image>
+        <image wx:if='{{item.isheart}}' src="../../images/like_big_press.png"></image>
+      </view>
+    </swiper-item>
+  </swiper>
+  <!--底部菜单-->
+  <view class="index_bottom">
+    <view class="index_bottom_wrap">
+      <view class="index_bottom_one">
+        <image hidden='{{miaoxingrenshow}}' src="../../images/miaoxingren_nor.png"></image>
+        <image hidden='{{!miaoxingrenshow}}' src="../../images/miaoxingren_press.png"></image>
+        <text>喵星球</text>
+      </view>
+      <view class="index_bottom_two">
+        <image catchtap='go_relese' data-status='{{userstatus}}' class='issue_icon' src="../../images/issue_icon.png"></image>
+      </view>
+      <view class="index_bottom_three" bindtap='goMy'>
+        <image hidden='{{miaomourenshow}}' src="../../images/miaomouren_nor.png"></image>
+        <image hidden='{{!miaomourenshow}}' src="../../images/miaomouren_press.png"></image>
+        <text>喵星人</text>
+      </view>
+    </view>
+  </view>
+  <!--遮罩层-->
+  <!--<view class="mask_wrap" wx:if='{{maskShow}}'>
+      <view class="cl">
+                <image class='i1' src="../../images/tip_slip.png"></image>
+                <image class='i2' catchtap='goIn' src="../../images/tip_button.png"></image>
+                <image  class='i3' catchtap='goIn' src="../../images/tip_issue.png"></image>
+                <image class='i4'  src="../../images/slip.gif"></image>
+      </view>
+      <view class="mask" catchtap='goIn'>
+      </view>
+    </view>-->
+
+</scroll-view>
+
+<!--喵圈-->
+<scroll-view class="latest-item-container {{currentNavbar==1 ? '' : 'hidden'}}" data-index='1' style="height: {{scrollHeight}}px;" scroll-y="true" bindscrolltolower="scrollLowerEvent" bindscrolltoupper="circlePullDownRefresh">
+  <view class="circle">
+    <view class='circle_wrap' wx:for='{{circleList}}' wx:for-index='index'>
+      <!--个人信息-->
+      <view class="circle_title">
+        <image class='circle_title_avater' src="{{item.headimg}}" catchtap='go_somebody' data-uid='{{item.uid}}'></image>
+        <view class="circle_title_user">
+          <view class="classname">
+            <text class='circle_title_name'>{{item.nickname}}</text>
+            <image wx-if='{{item.status==4}}' class='official' src="../../images/official_icon.png"></image>
+          </view>
+          <text class='circle_title_time'>{{item.dtime}}</text>
+        </view>
+        <view class="more" bindtap='showdel' data-index='{{index}}'>
+          <image src="../../images/more.png" data-index='{{index}}'></image>
+          <view class="model" style='height:80rpx;background:#000;color:#fff;opacity:0.6;line-height:80rpx;margin-top:30rpx;margin-left:190rpx;' data-index='{{index}}' wx:if="{{item.block}}">
+            <text class='circle_del' bindtap="circleDel" data-index='{{index}}' data-id='{{item.id}}' wx:if="{{item.del}}">删除</text>
+            <text class=' circle_del circle_top' bindtap="circleTop" data-index='{{index}}' data-id='{{item.id}}' wx:if="{{item.top}}">置顶</text>
+          </view>
+        </view>
+      </view>
+
+      <!--发帖内容-->
+      <view class="circle_content" data-id='{{item.id}}' catchtap='goDetail'>
+        <view wx:if='{{item.title}}' class='circle_content_title'>{{item.title}}</view>
+        <view class='circle_content_des'>{{item.cont}}
+          <text class='all' wx:if="{{item.cont.length>50}}">查看全文</text>
+        </view>
+        <view class="content_image">
+          <image wx:if='{{item.images[0]}}' src="{{item.images[0]}}" mode='aspectFill' data-previewSrc='{{item.images[0]}}' data-previewImgArray='{{item.images}}'></image>
+          <view class="num_image" wx:if='{{item.images[0]}}'>
+            <image src="../../images/num.png"></image>
+            <text class='num_length'>{{item.images.length}}</text>
+          </view>
+        </view>
+      </view>
+      <!--评论分享-->
+      <view class="circle_comment">
+        <view class="circle_comment_bottom circle_comment_heart">
+          <!--点赞-->
+          <view class="like" catchtap='circleHeart' data-uid='{{item.uid}}' data-id='{{item.id}}' data-index='{{index}}'>
+            <image wx:if='{{!item.isheart}}' src="../../images/like_nor.png" class='circle_comment_img'></image>
+            <image wx:if='{{item.isheart}}' src="../../images/like_press.png" class='circle_comment_img'></image>
+          </view>
+          <text>{{item.heart_num}}</text>
+        </view>
+        <!--评论-->
+        <view class="circle_comment_bottom circle_comment_num" bindtap='circleComment' data-id='{{item.id}}'>
+          <view class="revert">
+            <image src="../../images/revert_nor.png" class='circle_comment_img'></image>
+          </view>
+          <text>{{item.rever_num}}</text>
+        </view>
+        <!--收藏-->
+        <view class="circle_comment_bottom circle_comment_collect" catchtap='circleCollect' data-uid='{{item.uid}}' data-id='{{item.id}}' data-index='{{index}}'>
+          <view class="save">
+            <image wx:if='{{!item.iscollect}}' src="../../images/save_nor.png" class='circle_comment_img'></image>
+            <image wx:if='{{item.iscollect}}' src="../../images/save_press.png" class='circle_comment_img'></image>
+          </view>
+          <text>收藏</text>
+        </view>
+        <!--分享-->
+        <view class="circle_comment_bottom circle_comment_share" style="position:relative" data-id='{{item.id}}' bindtap='goDetail'>
+          <view class="share" catchtap='circleShare'>
+            <image src="../../images/share_nor.png" data-id='{{item.id}}' bindtap='goDetail' class='circle_comment_img'></image>
+          </view>
+           <button style='width:60rpx;height:50rpx;display:inline-block;font-size:24rpx;border:1px solid #fff;padding-left:0;padding-right:0;color:#999;line-heigth:90rpx;' plain='true'>分享</button>
+        </view>
+      </view>
+    </view>
+    <view class='nomore' hidden='{{loadingmore}}'>
+      我也是有底线的...
+    </view>
+  </view>
+  <!--底部菜单-->
+  <view class="index_bottom">
+    <view class="index_bottom_wrap">
+      <view class="index_bottom_one">
+
+        <image hidden='{{miaoxingrenshow}}' src="../../images/miaoxingren_nor.png"></image>
+        <image hidden='{{!miaoxingrenshow}}' src="../../images/miaoxingren_press.png"></image>
+        <text>喵星球</text>
+      </view>
+      <view class="index_bottom_two">
+        <image catchtap='go_relese' data-status='{{userstatus}}' class='issue_icon' src="../../images/issue_icon.png"></image>
+      </view>
+      <view class="index_bottom_three" bindtap='goMy'>
+        <image hidden='{{miaomourenshow}}' src="../../images/miaomouren_nor.png"></image>
+        <image hidden='{{!miaomourenshow}}' src="../../images/miaomouren_press.png"></image>
+        <text>喵星人</text>
+      </view>
+
+    </view>
+  </view>
+</scroll-view>
+
+
+<!--喵问-->
+<scroll-view class="latest-item-container {{currentNavbar==2 ? '' : 'hidden'}}" data-index='2' scroll-y="true" bindscrolltolower="scrollLowerEvent" style='height:{{scrollHeight}}px' bindscrolltoupper="questionPullDownRefresh">
+  <view class='qustion_wrap' wx:for='{{questionList}}' wx:for-index='index' >
+    <!--回答者-->
+    <view class="classname">
+      <view class="question_title" wx:if='{{!item.answer==false}}'>
+        <image class='question_title_img' src="../../images/reply_icon.png"></image>
+        <text class='question_title_name'>{{item.answer.nickname}}</text>
+        <image class='more' bibdtap='showdel' data-index='{{index}}' src="../../images/more.png"></image>
+      </view>
+      <view class="model" style='width:100%;height:100rpx;background:#000;color:#fff;opacity:0.6' data-index='{{index}}' wx:if="{{item.block}}">
+        <text class='circle_del' bindtap="circleDel" data-index='{{index}}' data-id='{{item.id}}' wx:if="{{item.del}}">删除</text>
+        <text class=' circle_del circle_top' bindtap="circleTop" data-index='{{index}}' data-id='{{item.id}}' wx:if="{{item.top}}">置顶</text>
+      </view>
+      <!--发帖内容-->
+      <view class="question_content" bindtap='qustionClick' data-id='{{item.id}}'>
+        <view wx:if='{{item.title}}' class='question_content_title'>{{item.title}}</view>
+        <view wx:if='{{item.answer.answer_info}}' class='question_content_des'>{{item.answer.answer_info}}</view>
+        <view class="content_image">
+          <image wx:if='{{item.answer.answer_img[0]}}' src="{{item.answer.answer_img[0]}}" mode='aspectFill'></image>
+          <view class="num_image" wx:if='{{item.answer.answer_img[0]}}'>
+            <image src="../../images/num.png"></image>
+            <text class='num_length'>{{item.answer.answer_img.length}}</text>
+          </view>
+        </view>
+      </view>
+      <!--赞同人数-->
+      <view class="question_approval">
+        <view class="approval" wx:if='{{item.answer.heart_num>=0}}'> {{item.answer.heart_num}}人赞同了TA的回答</view>
+        <view class="approval_no" wx:if='{{item.answer==false}}'>暂时还没有回答，快来占楼吧!</view>
+      </view>
+    </view>
+  </view>
+  <view class='nomore' hidden='{{loadingmore}}' style='margin-bottom:30rpx;'>
+    我也是有底线的...
+  </view>
+  <view style='height:30rpx;background:#f4f4f6'></view>
+  <!--底部菜单-->
+  <view class="index_bottom">
+    <view class="index_bottom_wrap">
+      <view class="index_bottom_one">
+        <image hidden='{{miaoxingrenshow}}' src="../../images/miaoxingren_nor.png"></image>
+        <image hidden='{{!miaoxingrenshow}}' src="../../images/miaoxingren_press.png"></image>
+        <text>喵星球</text>
+      </view>
+      <view class="index_bottom_two">
+        <image catchtap='go_relese' data-status='{{userstatus}}' class='issue_icon' src="../../images/issue_icon.png"></image>
+      </view>
+      <view class="index_bottom_three" bindtap='goMy'>
+        <image hidden='{{miaomourenshow}}' src="../../images/miaomouren_nor.png"></image>
+        <image hidden='{{!miaomourenshow}}' src="../../images/miaomouren_press.png"></image>
+        <text>喵星人</text>
+      </view>
+    </view>
+  </view>
+</scroll-view>

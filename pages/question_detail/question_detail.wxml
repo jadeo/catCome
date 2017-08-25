@@ -1,0 +1,35 @@
+<!--question_detail.wxml-->
+<view class="question_detail">
+  <!--问题-->
+  <view class="qustion">
+    <view class="question_detail_title">{{qustionDetail.title}}</view>
+    <view class="answer_detail_content">{{qustionDetail.desc}}</view>
+    <block wx:for='{{qustionDetail.images}}'>
+      <image  wx:if='{{qustionDetail.images}}' src="{{item}}" mode="aspectFill" style='height:388rpx;' class='question_image' catchtap='previewImage' data-previewSrc='{{item}}' data-previewImgArray='{{qustionDetail.images}}'></image>
+    </block>
+  </view>
+  <!--回答人数-->
+  <button class='btn' catchtap='answer' data-pid='{{qustionDetail.id}}' plain='true' disabled='{{isdisabled}}' style='border:none;border-top:1rpx solid #D5D5D7;border-radius:0rpx;;background:#fff;color:#ffd100;' data-toid='{{qustionDetail.uid}}' data-ans='{{qustionDetail.is_problemanswer}}' hover-class="none">立即回答</button>
+  <view class="answer_num" hidden='{{qustionDetail.count_answer==0}}'>{{qustionDetail.count_answer}}个回答</view>
+  <!--答案-->
+  <view class="answer_wrap" wx:for="{{answer}}">
+    <view class="answer">
+      <view class="answer_info">
+        <image class='reply_img' src="../../images/reply_icon.png"></image>
+        <view class="question_detail_title">{{item.nickname}}</view>
+        <image class='more' src="../../images/more.png"></image>
+      </view>
+      <view class="question_detail_content" catchtap='go_answer_detail' data-aid='{{item.id}}' data-qid='{{qustionDetail.id}}'>
+      <view class="content_image">
+             <image wx:if='{{item.images[0]}}' style='height:388rpx' src="{{item.images[0]}}" mode='aspectFill'></image>
+            <view class="num_image" wx:if='{{item.images[0]}}' >
+                <image src="../../images/num.png"></image>
+                <text class='num_length'>{{item.images.length}}</text>
+            </view>
+      </view>
+        <text class='answer_detail'>{{item.answer}}</text>
+        <p class='approve_num'>{{item.heart_num}}人赞同了TA的回答</p>
+      </view>
+    </view>
+  </view>
+</view>

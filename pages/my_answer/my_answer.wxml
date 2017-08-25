@@ -1,0 +1,24 @@
+<!--my_answer.wxml-->
+<view class='qustion_wrap' wx:for='{{answerList}}' wx:for-index='index'>
+<!--发帖内容-->
+<view class="classname" data-pro='{{item.proinfo}}' bindtap='qustionClick' data-aid='{{item.id}}' data-qid='{{item.proinfo.id}}' data-index='{{index}}'>
+ <view class="question_content" >
+  <view class='question_content_title' wx:if='{{item.proinfo.title}}'>{{item.proinfo.title}}</view>
+  <view class='question_content_des'>{{item.answer}}</view>
+ </view>
+ <!--发帖时间-->
+<view class="question_time">
+      <text class='time'>{{item.answer_time}}</text>
+      <text class='del' catchtap='del' data-id='{{item.id}}' data-index='{{index}}'>删除</text>
+</view>
+
+</view>
+</view>
+ <view class='nonemsg' wx:if="{{answerList=='' || answerList==null}}">
+        <!--<icon type="info" size="30"></icon>-->
+        <image src="../../images/kong.png"></image>
+        <view>暂无回答</view>
+  </view>
+
+
+

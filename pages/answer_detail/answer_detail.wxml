@@ -1,0 +1,50 @@
+<!--question_detail.wxml-->
+<view class="question_detail">
+  <!--问题-->
+  <view class="qustion">
+    <view class="question_detail_title">{{answerDetail.title}}</view>
+    <view class="question_detail_content">{{answerDetail.desc}}</view>
+  </view>
+
+  <!--答案详情-->
+  <!--circle_detail.wxml-->
+  <!--帖子详情-->
+  <view class="cirlce_detail_wrap" style='margin-bottom:180rpx;'>
+    <view class="cirlce_detail">
+      <view class="circle_detail_title">
+        <image bindtap='go_somebody' data-uid='{{answerDetail.answer.from_uid}}' src="{{answerDetail.answer.fromuser_headimg}}"></image>
+        <text class='circle_detail_name'>{{answerDetail.answer.fromuser_nickname}}</text>
+        <text class='circle_detail_time'>{{answerDetail.answer.ctime}}</text>
+      </view>
+      <view class="circle_detail_content">
+        <text class='des'>{{answerDetail.answer.answer}}</text>
+        <block wx:for='{{answerDetail.answer.images}}'>
+          <image src="{{item}}" catchtap='previewImage' data-previewSrc='{{item}}' data-previewImgArray='{{answerDetail.answer.images}}' style='height:388rpx' mode='aspectFill'></image>
+        </block>
+      </view>
+    </view>
+  </view>
+  <!--点击评论-->
+  <view class="circle_comment">
+    <view class="circle_comment_bottom circle_comment_heart">
+      <view class="classname" catchtap='heart' data-id='{{answerDetail.answer.id}}' data-uid='{{answerDetail.answer.from_uid}}'>
+        <image wx:if='{{!answerDetail.answer.isheart}}' src="../../images/like_nor.png" class='circle_comment_img'></image>
+        <image wx:if='{{answerDetail.answer.isheart}}' src="../../images/like_press.png" class='circle_comment_img'></image>
+      </view>
+      <text>{{answerDetail.answer.heart_num}}</text>
+    </view>
+    <view class="circle_comment_bottom circle_comment_num">
+      <view class="classname" catchtap='collect' data-id='{{answerDetail.answer.id}}' data-uid='{{answerDetail.answer.from_uid}}'>
+        <image wx:if='{{!answerDetail.answer.iscollect}}' src="../../images/save_nor.png" class='circle_comment_img'></image>
+        <image wx:if='{{answerDetail.answer.iscollect}}' src="../../images/save_press.png" class='circle_comment_img'></image>
+      </view>
+      <text>{{answerDetail.answer.collect_num}}</text>
+    </view>
+    <view class="circle_comment_bottom circle_comment_collect">
+      <view class="classname" catchtap='share' data-id='{{answerDetail.answer.id}}' data-uid='{{answerDetail.answer.from_uid}}'>
+        <image src="../../images/share_nor.png" class='circle_comment_img'></image>
+      </view>
+       <button style='width:60rpx;height:50rpx;display:inline-block;font-size:24rpx;border:1px solid #fff;padding-left:0;padding-right:0;color:#999' plain='true' open-type='share'>分享</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,32 @@
+<!--release.wxml-->
+<view class="relese_container">
+<view class="release">
+<!--喵圈发布-->
+<navigator url="../relese_circle/relese_circle" hover-class="navigator-hover">
+<view class="relese_circle" catchtap='relese_circle'>
+        <image src="../../images/issue_miaoquan.png"></image>
+        <view class="relese_circle_text text">喵圈</view>
+</view>
+</navigator>
+<!--喵问发布-->
+<navigator url="../relese_question/relese_question" hover-class="navigator-hover">
+<view class="relese_circle"  catchtap='relese_question'>
+        <image src="../../images/issue_miaowen.png"></image>
+        <view class="relese_circle_text text">喵问</view>
+</view>
+</navigator>
+<!--官方发布-->
+<navigator url="../relese_circle/relese_circle" hover-class="navigator-hover">
+<view class="relese_circle" catchtap='relese_offical'>
+        <image src="../../images/issue_guanfang.png"></image>
+        <view class="relese_circle_text text">官方</view>
+</view>
+</navigator> 
+</view>
+
+<!--关闭按钮-->
+
+<view class="close_btn">
+    <image bindtap='close' class='close_btn_img' src="../../images/close_icon.png"></image>
+</view>
+</view>

@@ -1,0 +1,119 @@
+/* question_detail.wxss */
+.question_detail{
+}
+/*问题*/
+.qustion{
+width:690rpx;
+background:#ffffff;
+padding : 0 30rpx;
+}
+.qustion .question_detail_title{
+  padding-top:31rpx;
+  font-size:36rpx;
+  color:#333335;
+  font-weight: bold;
+  margin-bottom:27rpx;
+}
+.answer_detail_content{
+  color:#666668;
+  font-size:32rpx;
+  line-height:55rpx;
+  padding-bottom:29rpx;
+}
+.question_image{
+  width:100%;
+}
+/*回答*/
+.btn{
+  color:#FFD100;
+  border:none;
+  font-weight:600;
+  background: #fff;
+  font-size:36rpx;
+}
+/*回答人数*/
+.answer_num{
+  padding-left:30rpx;
+  font-size:24rpx;
+  height:68rpx;
+  line-height:68rpx;
+  color:#99999A;
+}
+/*答案*/
+.answer_wrap{
+/*margin-bottom:80rpx;*/
+}
+.answer{
+ width:690rpx;
+background:#fff;
+padding : 0 30rpx; 
+margin-bottom:20rpx;
+
+}
+.question_detail_content image{
+  display:block;
+  width:100%;
+  margin-bottom:10rpx;
+}
+.question_detail_content .answer_detail{
+  display: block;
+}
+.answer .question_detail_title{
+height:96rpx;
+line-height:96rpx;
+font-size:32rpx;
+color:#333335;
+flex-grow:1;
+
+}
+.answer_info{
+  display:flex;
+}
+.answer_info .more{
+  width:44rpx;
+  height:44rpx;
+  margin-top:32rpx;
+  
+}
+.answer .reply_img{
+  width:28rpx;
+  height:28rpx;
+  margin-top:32rpx;
+  margin-right:14rpx;
+}
+.answer .answer_detail{
+  font-size:32rpx;
+  line-height:55rpx;
+  color:#333334;
+}
+.approve_num{
+  height:87rpx;
+  line-height: 87rpx;
+  font-size:24rpx;
+  color:#a7a7a9;
+}
+
+
+.answer .content_image {
+  position: relative;
+}
+
+.answer  .num_image {
+  position: absolute;
+  left: 25rpx;
+  top: 25rpx;
+}
+
+.answer .num_image image {
+  width: 70rpx;
+  height: 40rpx;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.answer .num_length{
+  font-size:28rpx;
+  color:#fff;
+  position: absolute;
+  left:45rpx;
+  top:0rpx;
+}

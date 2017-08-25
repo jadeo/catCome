@@ -1,0 +1,165 @@
+/* question_detail.wxss */
+.question_detail{
+}
+/*问题*/
+.qustion{
+width:670rpx;
+background:#ffffff;
+padding : 0 30rpx;
+margin-bottom:20rpx;
+}
+.qustion .question_detail_title{
+  padding-top:31rpx;
+  font-size:36rpx;
+  color:#333335;
+  font-weight: bold;
+  margin-bottom:27rpx;
+}
+.question_detail_content{
+  color:#666668;
+  font-size:32rpx;
+  line-height:55rpx;
+  padding-bottom:29rpx;
+}
+/*答案*/
+/* circle_detail.wxss */
+/*帖子详情*/
+.cirlce_detail_wrap{
+  padding:0 30rpx;
+  background: #fff;
+  margin-top:20rpx;
+}
+.circle_detail_title{
+ padding:20rpx 0
+}
+.circle_detail_title image{
+  width:60rpx;
+  height:60rpx;
+  float:left;
+  margin-right:20rpx;
+  border-radius: 50%;
+}
+
+.cirlce_detail .circle_detail_name{
+  display:block;
+  font-size:32rpx;
+  font-weight: bold;
+  color:#333334;
+}
+.cirlce_detail .circle_detail_time{
+ display:block;
+ font-size:24rpx;
+ color:#999999;
+}
+.cirlce_detail .circle_detail_content{
+  padding-bottom:20rpx;
+}
+.circle_detail_content .des{
+  font-size:32rpx;
+  line-height:55rpx;
+  color:#333334;
+  
+}
+.circle_detail_content image{
+  width:100%;
+  height:388rpx;
+  margin-top:20rpx;
+}
+/*评论列表*/
+.comment_list{
+  width:100%;
+  height:100rpx;
+  background: #fff;
+  margin-top:16rpx;
+  margin-bottom:320px;
+}
+.comment_list_title{
+  padding: 0px 20px;
+  height:100rpx;
+  line-height: 100rpx;
+  font-size:30rpx;
+}
+.comment_list_content{
+  width:90%;
+  padding:10px 20px 0 20px;
+  height:auto;
+  background: #fff;
+  display:flex;
+}
+.comment_list_content_left {
+  width:13%;
+  flex:1;
+}
+.comment_list_content_left image{
+  width:60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+.comment_list_content_right{
+  width:87%;
+  border-bottom:1rpx solid #ccc;
+    padding-bottom:20rpx;
+}
+.comment_list_content_right_like{
+  display:flex;
+}
+.comment_list_content_right_like .like_num{
+  font-size:24rpx;
+  color:#999999;
+  line-height:46rpx;
+}
+.comment_list_content_right_img{
+  width:44rpx;
+  height:44rpx;
+ 
+}
+.comment_list_content_name{
+  font-size:34rpx;
+  flex-grow:0.95;
+}
+.comment_list_content_right .comment_list_content_des{
+  font-size:32rpx;
+  line-height:50rpx;
+
+}
+/*点击评论*/
+.circle_comment_bottom{
+   display: inline-block;
+  /*width: 25%;*/
+  /*text-align: center;*/
+  font-size: 24rpx;
+  color: #999999;
+  margin-right:150rpx;
+  margin-left:65rpx;
+}
+.circle_comment_bottom:last-child{
+  margin-right:0;
+}
+
+.circle_comment{
+  height: 100rpx;
+  line-height: 100rpx;
+  position: fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background: #fff;
+}
+.circle_comment view{
+  display:inline-block;
+}
+.circle_comment_img{
+  width:44rpx;
+  height:44rpx;
+ vertical-align: middle;
+}
+.circle_comment_bottom text{
+  vertical-align: middle;
+
+}
+button[plain]{
+  border:1px solid #fff;
+  color:#999999;
+  position: absolute;
+  top:27rpx;
+}

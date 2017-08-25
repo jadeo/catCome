@@ -1,0 +1,36 @@
+/* release.wxss */
+page{
+  width:100%;
+  background: #fff;
+ 
+}
+.release{
+  width:650rpx;
+  margin:0 auto;
+  display:flex;
+  padding-top:500rpx;
+}
+.release .text{
+  font-size: 32rpx;
+  color:#99999B;
+  margin-top:24rpx;
+  width:200rpx;
+  text-align: center;
+}
+.release image{
+  width:200rpx;
+  height:200rpx;
+  flex-grow: 1;
+}
+.relese .img_center{
+  margin:0 25rpx;
+}
+.close_btn{
+  text-align: center;
+
+}
+.close_btn_img{
+  width:80rpx;
+  height:80rpx;
+ margin-top:190rpx;
+}

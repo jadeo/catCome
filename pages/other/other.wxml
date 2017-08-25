@@ -1,0 +1,106 @@
+<view class="my_bg">
+<!--个人信息-->
+   <image class='bg' src="../../images/personal_bg.png"></image>
+  <view class="my_info">
+       <view class="my_avater">
+            <image src="{{other.headimg}}"></image> 
+      </view>
+      <view class="my_name" style='font-weight:600;'>{{other.nickname}}</view>
+  </view>
+
+<!--导航-->
+<view class="navbar">
+  <view class="navbar-item" wx:for="{{navbar}}" wx:for-index="idx" data-idx="{{idx}}" bindtap="swichNav">
+    <text class="navbar-text {{currentNavbar==idx ? 'active' : ''}}">{{item}}</text>
+  </view>
+</view>
+
+<!--喵圈-->
+ <scroll-view class="latest-item-container {{currentNavbar==0 ? '' : 'hidden'}}" style="height: {{scrollHeight}}px;" scroll-y="true" bindscrolltolower="scrollLowerEvent" data-index='0'>
+ <view class="circle">
+ <view class='circle_wrap' wx:for='{{circleList}}' wx:for-index='index'>
+ <!--个人信息-->
+ <view class="circle_title">
+  <image class='circle_title_avater' src="{{other.headimg}}"></image>
+  <view class="circle_title_user">
+      <text class='circle_title_name'>{{other.nickname}}</text>
+      <!--<image class='official' src="../../images/official_icon.png"></image>-->
+      <text class='circle_title_time'>{{item.dtime}}</text> 
+  </view>
+  <view class="more">
+       <image src="../../images/more.png"></image>
+  </view>
+ </view>
+<!--发帖内容-->
+      <view class="circle_content" data-id='{{item.id}}' catchtap='goDetail'>
+        <view wx:if='{{item.title}}' class='circle_content_title'>{{item.title}}</view>
+        <view wx:if='{{item.cont}}' class='circle_content_des'>{{item.cont}}<text class='all' wx:if='{{item.cont.length>50}}'>查看全文</text></view>
+        <view class="content_image">
+             <image wx:if='{{item.images[0]}}' src="{{item.images[0]}}" mode='aspectFill'></image>
+            <view class="num_image" wx:if='{{item.images[0]}}' >
+                <image src="../../images/num.png"></image>
+                <text class='num_length'>{{item.images.length}}</text>
+            </view>
+        </view>
+      </view> 
+ <!--评论分享-->
+ <view class="circle_comment">
+  <view class="circle_comment_bottom circle_comment_heart">
+  <!--点赞-->
+    <view class="like" catchtap='circleHeart' data-uid='{{item.uid}}' data-id='{{item.id}}' data-index='{{index}}' >
+          <image wx:if='{{!item.isheart}}' src="../../images/like_nor.png" class='circle_comment_img'></image>
+          <image wx:if='{{item.isheart}}'src="../../images/like_press.png" class='circle_comment_img'></image>
+    </view>
+    <text>{{item.heart_num}}</text>
+  </view>
+  <!--评论-->
+  <view class="circle_comment_bottom circle_comment_num" bindtap='circleComment' data-id='{{item.id}}'>
+      <view class="revert">
+          <image src="../../images/revert_nor.png" class='circle_comment_img'></image>
+      </view>
+      <text>{{item.rever_num}}</text>
+  </view>
+  <!--收藏-->
+  <view class="circle_comment_bottom circle_comment_collect" catchtap='circleCollect' data-uid='{{item.uid}}' data-id='{{item.id}}' data-index='{{index}}' >
+     <view class="save">
+            <image wx:if='{{!item.iscollect}}' src="../../images/save_nor.png" class='circle_comment_img'></image>
+            <image wx:if='{{item.iscollect}}' src="../../images/save_press.png" class='circle_comment_img'></image>
+     </view>
+    <text>收藏</text>
+  </view>
+  <!--分享-->
+  <view class="circle_comment_bottom circle_comment_share" data-id='{{item.id}}' catchtap='goDetail' >
+    <view class="share" catchtap='circleShare'>
+          <image src="../../images/share_nor.png" class='circle_comment_img'></image>
+    </view>  
+    <text>分享</text>
+  </view>
+ </view>
+ </view>
+ </view>
+ <view class='nonemsg' wx:if="{{circleList=='' ||circleList==null}}">
+       <image src="../../images/kong.png"></image>
+        <view>他的喵圈为空</view>
+  </view>
+</scroll-view>
+
+<!--喵问-->
+ <scroll-view class="latest-item-container {{currentNavbar==1 ? '' : 'hidden'}}" style="height: {{scrollHeight}}px;" scroll-y="true" bindscrolltolower="scrollLowerEvent" scroll-top="{{scrollTop}}" bindscroll="scroll" style='height:{{scrollHeight}}px' data-index='1' >
+ <view class='qustion_wrap' wx:for='{{questionList}}'>
+ <!--发帖人-->
+ 
+<!--发帖内容-->
+
+ <view class="question_content" bindtap='qustionClick' data-id='{{item.id}}'>
+  <view class='question_content_title' style='color:#333335;font-size:36rpx;'>{{item.title}}</view>
+  <view class='question_content_des' style='color:##999999;font-size:24rpx;'>{{item.ctime}}</view>
+ </view>
+ <!--赞同人数-->
+</view>
+ <view class='nonemsg' wx:if="{{questionList==NULL ||questionList ==''}}">
+        <image src="../../images/kong.png"></image>
+        <view>他的喵问为空</view>
+</view>
+
+</scroll-view>
+</view>

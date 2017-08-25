@@ -1,0 +1,5 @@
+<!--about.wxml-->
+<view class="container">
+    <image src="../../images/about.png"></image>
+</view>
+

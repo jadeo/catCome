@@ -1,0 +1,47 @@
+<!--circle_comment.wxml-->
+
+<view class="circle_comment">
+ <view class="circle_comment_wrap">
+    <form>
+        <textarea
+         class='textarea'
+         placeholder='请输入您的喵圈'
+         placeholder-style='color:#666667;font-size:32rpx;' 
+         name='miaoji'  bindinput='setCardContent'
+        />
+         
+        <!--图片容器-->
+        <view class="img_containerbox">
+            <view class="img_container">
+                <!--图片列表-->
+                <block wx:for='{{addImages}}' wx:for-item='addImage'>
+                    <view class="userpic_box">
+                        <image class="userpic" src="{{addImage}}" mode="scaleToFill"></image>
+                        <view class="del" data-index='{{index}}' bindtap='delAddImage'><image src="../../images/delphoto.png"></image></view>
+                    </view>
+                </block>
+                <view class="add" bindtap='addImages' hidden='{{addimg}}'>
+                   <image src="../../images/4.png"></image>
+                </view>
+            </view>
+         </view> 
+          <view class="address" bindtap='getlocation'>
+                    {{city}}
+                    <image style='float:right;width:14rpx;height:22rpx;margin-top:30rpx;margin-right:10rpx;' src="../../images/me_next_icon.png"></image>
+          </view>
+        <!--<text class='circle_comment_limit'>1/100</text>-->
+        <view class="btn-area">
+            <button
+             loading='{{isSubmit}}' 
+             formType="submit" 
+             disabled='{{isDisabled}}'
+             bindtap='postCard'
+             plain='true'
+             hover-class='none'
+             >发布喵记</button>
+</view>
+    </form>
+   
+</view>
+
+</view>

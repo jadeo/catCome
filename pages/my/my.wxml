@@ -1,0 +1,65 @@
+<view class="my_bg">
+<!--个人信息-->
+   <image class='bg' src="../../images/me_bg.png"></image>
+  <view class="my_info">
+       <view class="my_avater">
+            <image src="{{mydata.headimg}}"></image> 
+      </view>
+      <view class="my_name" style='font-weight:600;'>{{mydata.nickname}}</view>
+  </view>
+
+<!--个人列表-->
+<view class="my_list_wrap">
+  <view class="my_list">
+     <view class="my_list_item" catchtap='myNews'>
+          <image class='my_message' src="../../images/me_message.png"></image>
+          <view class='my_news'>我的消息<image class='msg_num' wx:if='{{mydata.msg>0}}' src="../../images/msg_num.png"></image>
+          </view>
+          <image class='me_next' src="../../images/me_next_icon.png"></image>
+     </view>
+      <view class="my_list_item" catchtap='myAnswer'>
+          <image class='my_message' src="../../images/me_answer.png"></image>
+          <text class='my_news'>我的回答</text>
+          <image class='me_next' src="../../images/me_next_icon.png"></image>
+     </view>
+      <view class="my_list_item" catchtap='mySave'>
+          <image class='my_message' src="../../images/me_save.png"></image>
+          <text class='my_news'>我的收藏</text>
+          <image class='me_next' src="../../images/me_next_icon.png"></image>
+     </view>
+      <view class="my_list_item" catchtap='myIssue'>
+          <image class='my_message' src="../../images/me_issue.png"></image>
+          <text class='my_news'>我的发布</text>
+          <image class='me_next' src="../../images/me_next_icon.png"></image>
+     </view>
+      <view class="my_list_item" catchtap='myAbout'>
+          <image class='my_message' src="../../images/me_about.png"></image>
+          <text class='my_news'>关于我们</text>
+          <image class='me_next' src="../../images/me_next_icon.png"></image>
+     </view>
+  </view>
+  </view>
+
+
+
+</view>
+
+ <!--底部菜单-->
+  <view class="index_bottom">
+    <view class="index_bottom_wrap">
+      <view class="index_bottom_one" bindtap='goIndex'>
+        <image src="../../images/miaoxingren_nor.png"></image>
+        <!--<image hidden='{{!miaoxingrenshow}}' src="../../images/miaoxingren_press.png"></image>-->
+        <text>喵星球</text>
+      </view>
+      <view class="index_bottom_two">
+          <image catchtap='go_relese' data-status='{{userstatus}}' class='issue_icon' src="../../images/issue_icon.png"></image>
+      </view>
+      <view class="index_bottom_three">
+          <!--<image src="../../images/miaomouren_nor.png"></image>-->
+          <image src="../../images/miaomouren_press.png"></image>
+        <text>喵星人</text>
+      </view>
+
+    </view>
+  </view>

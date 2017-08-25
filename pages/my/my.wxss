@@ -1,0 +1,121 @@
+/* my.wxss */
+/*头像*/
+.mybg{
+  width:100%;
+}
+.my_bg .bg{
+  width:100%;
+  height:309rpx;
+  position: relative;
+}
+.my_bg .my_info{
+  position: absolute;
+  top:27rpx;
+}
+.my_bg .my_avater{
+  position: absolute;
+  left:310rpx;
+}
+.my_bg .my_avater image{
+  width:114rpx;
+  height:114rpx;
+  border-radius: 50%;
+  border:2px  solid #fff;
+}
+.my_list_wrap{
+  position: absolute;
+  top:250rpx;
+  left:30rpx;
+}
+.my_name{
+  width:750rpx;
+  text-align:center;
+  margin:140rpx auto 0 auto;
+  overflow: hidden;
+  height:50rpx;
+}
+.my_list{
+ width:690rpx;
+  margin:0 auto;
+  background: #fff;
+  border-radius: 10rpx;
+}
+.my_list_item{
+  display: flex;
+  z-index:999;
+  height:140rpx;
+  line-height:140rpx;
+  background:#fff;
+  margin:0 30rpx;
+  border-bottom:1rpx solid #D5D5D7;
+}
+
+.my_list_item .my_message{
+  width:44rpx;
+  height:44rpx;
+  margin-top:50rpx;
+  margin-right:47rpx;
+}
+.my_list_item .my_news{
+  font-size:32rpx;
+  color:#333333;
+  flex-grow:4;
+  display:inline-block;
+}
+.my_news .msg_num{
+  width:20rpx;
+  height:20rpx;
+  margin-left:10rpx;
+}
+.my_list_item .me_next{
+  width:14rpx;
+  height: 22rpx;
+   margin-top:57rpx;
+}
+.my_list_item:last-child{
+  border-bottom:none;
+}
+.msg_num{
+  flex-grow:0.2;
+  
+}
+
+/*底部菜单*/
+.index_bottom{
+  width:100%;
+  position: fixed;
+  bottom:0;
+  height:96rpx;
+  background: #fff;
+  display:flex;
+  box-shadow: 0px -3px 3px rgba(0,0,0,0.02);
+}
+.index_bottom_wrap{
+  width:500rpx;
+  margin:0 auto;
+  display:flex;
+}
+.index_bottom  .issue_icon{
+  width:100rpx;
+  height: 72rpx;
+}
+.index_bottom image{
+  width:54rpx;
+  height:54rpx;
+   margin-top:12rpx;
+}
+.index_bottom text{
+  font-size:20rpx;
+  color:#333335;
+  display:block;
+  position: fixed;
+  bottom:6rpx;
+}
+.index_bottom  .index_bottom_one{
+  flex-grow:0.9;
+}
+.index_bottom  .index_bottom_two{
+  flex:1.5;
+}
+.index_bottom  .index_bottom_three{
+}

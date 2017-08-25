@@ -1,0 +1,76 @@
+<!--circle_detail.wxml-->
+<!--帖子详情-->
+<view class="cirlce_detail_wrap">
+<view class="cirlce_detail">
+  <view class="circle_detail_title">
+    <image src="{{detailList.userimages}}" catchtap='go_somebody' data-uid='{{detailList.uid}}'></image>
+    <text class='circle_detail_name'>{{detailList.nickname }}</text>
+    <text class='circle_detail_time'>{{detailList.dtime}}</text>
+  </view>
+  <view class="circle_detail_content" >
+     <text class='des'>{{detailList.cont}}</text>
+     <block wx:for='{{detailList.images}}'>
+         <image src="{{item}}" mode='aspectFill' catchtap='previewImage' data-previewSrc='{{item}}' data-previewImgArray='{{detailList.images}}'></image>
+     </block>
+  </view>
+</view>
+</view>
+<!--评论列表-->
+<view class="comment_list" >
+ <view class='comment_list_title'>评论列表</view>
+ <view class="comment_list_content" wx:for='{{reverseList}}' wx:for-index='index'>
+    <view class="comment_list_content_left">
+      <image catchtap='go_somebody' src="{{item.headimg}}" data-uid='{{item.from_uid}}'></image>
+      </view>
+      <view class="comment_list_content_right" bindtap='reply_comment' data-id='{{detailList.id}}'  data-uid='{{item.from_uid}}' data-name='{{item.fromname}}' >
+        <view class="comment_list_content_right_like">
+            <text class='comment_list_content_name'>{{item.fromname}}<text wx:if='{{item.isreply==1}}' style='color:#00ACEE'>:@{{item.to_nickname}} </text></text>
+             <view class="detail_like" catchtap='detailLike' data-did='{{item.fromuid}}' data-index='{{index}}' data-id='{{item.id}}'>
+                  <image wx:if='{{!item.isheart}}' class='comment_list_content_right_img' src="../../images/like_nor.png"></image>
+                  <image wx:if='{{item.isheart}}' class='comment_list_content_right_img' src="../../images/like_press.png"></image>
+             </view>
+              <text class='like_num'>{{item.heart_num}}</text>
+        </view>
+        <text class='comment_list_content_des'>{{item.cont}}</text>
+        <block class="iw" wx:for='{{item.images}}' wx:for-item='imgitem' >
+          <image class='reverse_images' src="{{imgitem}}" wx-if='{{item}}' catchtap='previewImage' data-previewSrc='{{imgitem}}' data-previewImgArray='{{item.images}}'></image>
+        </block>
+      </view>
+ </view>
+</view>
+<!--暂无消息-->
+    <view class='nonemsg' wx:if="{{reverseList=='' || reverseList==null }}">
+        <image src="../../images/kong.png"></image>
+        <view>暂无评论</view>
+    </view>
+ <view style='height:80rpx;background:#f4f4f6;'></view>
+
+
+<!--点击评论-->
+<view class="circle_comment" >
+  <view class="circle_comment_bottom circle_comment_heart" >
+    <view class="like" catchtap='answerLike' data-id='{{detailList.id}}'  data-uid='{{detailList.uid}}' >
+        <image wx-if='{{!detailList.isheart}}' src="../../images/like_nor.png" class='circle_comment_img'></image>
+        <image wx-if='{{detailList.isheart}}' src="../../images/like_press.png" class='circle_comment_img'></image>
+    </view>
+    <text>{{detailList.heart_num}}</text>
+  </view>
+  <view class="circle_comment_bottom circle_comment_num" catchtap='comment' data-id='{{detailList.id}}'  data-uid='{{detailList.uid}}'>
+      <image src="../../images/revert_nor.png" class='circle_comment_img'></image>
+      <text>{{detailList.rever_num}}</text>
+  </view>
+  <view class="circle_comment_bottom circle_comment_collect"  >
+   <view class="save" catchtap='answerCollect' data-id='{{detailList.id}}'  data-uid='{{detailList.uid}}'>
+        <image wx-if='{{!detailList.iscollect}}' src="../../images/save_nor.png" class='circle_comment_img'></image>
+        <image wx-if='{{detailList.iscollect}}' src="../../images/save_press.png" class='circle_comment_img'></image>
+    </view>
+    <text>收藏</text>
+  </view>
+ <view class="circle_comment_bottom circle_comment_share" data-id='{{item.id}}'  bindtap='goDetail'>
+          <view class="share" catchtap='circleShare'>
+            <image src="../../images/share_nor.png" data-id='{{item.id}}'  bindtap='goDetail' class='circle_comment_img'></image>
+          </view>
+          <button style='width:60rpx;height:50rpx;display:inline-block;font-size:24rpx;border:1px solid #fff;padding-left:0;padding-right:0;color:#999;line-heigth:90rpx;' plain='true' open-type='share'>分享</button>
+        </view>
+ </view>
+

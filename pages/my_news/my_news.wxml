@@ -1,0 +1,136 @@
+<!--my_news.wxml-->
+<scroll-view class="container" bindscrolltolower="scrollLowerEvent" scroll-y="true">
+<block wx:for='{{newsList}}' >
+    <!--喵圈点赞-->
+    <view class="my_news" wx:if='{{item.type == "diary_heart"}}' >
+        <!--个人信息-->
+        <view class="my_news_detail">
+            <image bindtap="go_somebody" data-uid="{{item.from_uid}}" src="{{item.from_user_headimg}}"></image>
+            <text class='name'>{{item.from_user_nickname}}</text>
+            <text class='time'>{{item.ctime}}</text>
+        </view>
+        <!--操作-->
+        <view class="my_news_des" catchtap='diary_heart' data-id='{{item.msg.id}}' data-status='{{item.msg.status}}'>
+            <text class='do_des'>
+                <text class='do_des_comment'>赞了你的喵圈</text>
+            </text>
+        </view>
+    </view>
+     <!--喵圈帖子收藏-->
+    <view class="my_news"  wx:if='{{item.type == "diary_collect"}}' >
+        <!--个人信息-->
+        <view class="my_news_detail">
+            <image  bindtap="go_somebody" data-uid='{{item.from_uid}}' src="{{item.from_user_headimg}}"></image>
+            <text class='name'>{{item.from_user_nickname}}</text>
+            <text class='time'>{{item.ctime}}</text>
+        </view>
+        <!--操作-->
+        <view class="my_news_des"catchtap='diary_collect' data-id='{{item.msg.id}}'data-status='{{item.msg.status}}'  >
+            <text class='do_des'>
+                <text class='do_des_comment'>收藏了你的帖子</text>
+            </text>
+        </view>
+    </view>
+    <!--赞了你的评论-->
+    <view class="my_news"  wx:if='{{item.type == "rever_heart"}}' >
+        <!--个人信息-->
+        <view class="my_news_detail">
+            <image  bindtap="go_somebody" data-uid='{{item.from_uid}}' src="{{item.from_user_headimg}}"></image>
+            <text class='name'>{{item.from_user_nickname}}</text>
+            <text class='time'>{{item.ctime}}</text>
+        </view>
+        <!--操作-->
+        <view class="my_news_des" catchtap='rever_heart' data-id='{{item.msg.diary.id}}' data-status='{{item.msg.disry.status}}' >
+            <text class='do_des'>
+                <text class='do_des_comment'>赞了你的评论</text>
+            </text>
+        </view>
+    </view>
+     <!--喵圈帖子评论回复-->
+    <view class="my_news"  wx:if='{{item.type == "rever"}}'  >
+        <!--个人信息-->
+        <view class="my_news_detail">
+            <image  bindtap="go_somebody" data-uid='{{item.from_uid}}' src="{{item.from_user_headimg}}"></image>
+            <text class='name'>{{item.from_user_nickname}}</text>
+            <text class='time'>{{item.ctime}}</text>
+        </view>
+        <!--操作-->
+        <view class="my_news_des" catchtap='rever' data-id='{{item.msg.diary.id}}' data-dstatus='{{item.msg.diary.status}}' data-rstatus='{{item.msg.rever.status}}'>
+            <text class='do_des'>
+               <text class='do_des_comment'>回复了你</text>
+                <text class='do_des_detail'>//{{item.rever.cont}}</text>
+            </text>
+        </view>
+    </view>
+    <!--喵圈帖子评论-->
+    <view class="my_news"  wx:if='{{item.type == "diary_rever"}}'>
+        <!--个人信息-->
+        <view class="my_news_detail">
+            <image  bindtap="go_somebody" data-uid='{{item.from_uid}}' src="{{item.from_user_headimg}}"></image>
+            <text class='name'>{{item.from_user_nickname}}</text>
+            <text class='time'>{{item.ctime}}</text>
+        </view>
+        <!--操作-->
+        <view class="my_news_des" catchtap='diary_rever' data-id='{{item.msg.diary.id}}' data-dstatus='{{item.msg.diary.status}}' data-rstatus='{{item.msg.rever.status}}' >
+            <text class='do_des'>
+                <text class='do_des_comment'>评论了你</text>
+                <text class='do_des_detail'>//{{item.rever.cont}}</text>
+            </text>
+        </view>
+    </view>
+     <!--回答点赞-->
+    <view class="my_news"  wx:if='{{item.type == "answer_heart"}}'  >
+        <!--个人信息-->
+        <view class="my_news_detail">
+            <image  bindtap="go_somebody" data-uid='{{item.from_uid}}' src="{{item.from_user_headimg}}"></image>
+            <text class='name'>{{item.from_user_nickname}}</text>
+            <text class='time'>{{item.ctime}}</text>
+        </view>
+        <!--操作-->
+        <view class="my_news_des" catchtap='answer_heart' data-id='{{item.msg.answer.pid}}' data-uid='{{item.msg.answer.id}}' data-astatus='{{item.msg.answer.status}}' data-pstatus='{{item.msg.pro.status}}'>
+            <text class='do_des'>
+                <text class='do_des_comment'>赞了你的回答</text>
+            </text>
+        </view>
+    </view>
+      <!--回答收藏-->
+    <view class="my_news"  wx:if='{{item.type == "answer_collect"}}' >
+        <!--个人信息-->
+        <view class="my_news_detail">
+            <image  bindtap="go_somebody" data-uid='{{item.from_uid}}' src="{{item.from_user_headimg}}"></image>
+            <text class='name'>{{item.from_user_nickname}}</text>
+            <text class='time'>{{item.ctime}}</text>
+        </view>
+        <!--操作-->
+        <view class="my_news_des"  catchtap='answer_collect' data-id='{{item.msg.answer.pid}}' data-uid='{{item.msg.answer.id}}' data-astatus='{{item.msg.answer.status}}' data-pstatus='{{item.msg.pro.status}}' >
+            <text class='do_des'>
+                <text class='do_des_comment'>收藏了你的回答</text>
+            </text>
+        </view>
+    </view>
+    <!--喵问回答-->
+    <view class="my_news"  wx:if='{{item.type == "answer"}}'   >
+        <!--个人信息-->
+        <view class="my_news_detail">
+            <image  bindtap="go_somebody" data-uid='{{item.from_uid}}' src="{{item.from_user_headimg}}"></image>
+            <text class='name'>{{item.from_user_nickname}}</text>
+            <text class='time'>{{item.ctime}}</text>
+        </view>
+        <!--操作-->
+        <view class="my_news_des" catchtap='answer' data-id='{{item.msg.answer.pid}}' data-uid='{{item.msg.answer.id}}' data-astatus='{{item.msg.answer.status}}' data-pstatus='{{item.msg.pro.status}}' >
+            <text class='do_des'>
+                <text class='do_des_comment'>回答了你</text>
+                <text class='do_des_detail'>//{{item.answer.answer}}</text>
+            </text>
+        </view>
+    </view>
+</block>
+ <!--暂无消息-->
+    <view class='nonemsg' wx:if="{{newsList=='' || newsList==null }}">
+        <image src="../../images/kong.png"></image>
+        <view>暂无消息</view>
+    </view>
+    <view class='nomore' hidden='{{loadingmore}}'>
+      我也是有底线的...
+    </view>
+</scroll-view>

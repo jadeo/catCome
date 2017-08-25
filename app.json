@@ -1,0 +1,32 @@
+{
+  "pages": [
+    
+    "pages/index/index",
+    "pages/my/my",
+    "pages/other/other",
+    "pages/relese_circle/relese_circle",
+    "pages/answer_detail/answer_detail",
+    "pages/question_detail/question_detail",
+    "pages/circle_detail/circle_detail",
+    "pages/circle_comment/circle_comment",
+    "pages/circle_reply_comment/circle_reply_comment",
+    "pages/release_offical/release",
+    "pages/question_huida/question_huida",
+    "pages/relese_question/relese_question",
+    "pages/relese_offical/relese_offical",
+    "pages/release/release",
+    "pages/my_news/my_news",
+    "pages/my_answer/my_answer",
+    "pages/my_issue/my_issue",
+    "pages/my_save/my_save",
+    "pages/about/about"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "white",
+    "navigationBarTitleText": "猫来的喵星球",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "debug": true
+}
